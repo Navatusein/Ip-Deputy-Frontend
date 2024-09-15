@@ -17,7 +17,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.c }}/ip-deputy-frontend
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/ip-deputy-frontend
           tags: |
             type=raw,value=${{ github.sha }}
             type=raw,value=latest
