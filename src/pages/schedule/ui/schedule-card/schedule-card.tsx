@@ -68,14 +68,14 @@ const ScheduleCard: FC<IProps> = (props) => {
         {props.couple.additionalDates.length !== 0 &&
           <Text>
             та [
-            {props.couple.additionalDates.map((value) => (value.date.substring(5).split("-").reverse().join("."))).join(".")}
+            {props.couple.additionalDates.map((value) => (value.date.substring(5).split("-").reverse().join("."))).join(", ")}
             ]
           </Text>
         }
         {props.couple.removedDates.length !== 0 &&
           <Text>
             крім [
-            {props.couple.removedDates.map((value) => (value.date.substring(5).split("-").reverse().join("."))).join(".")}
+            {props.couple.removedDates.map((value) => (value.date.substring(5).split("-").reverse().join("."))).join(", ")}
             ]
           </Text>
         }
