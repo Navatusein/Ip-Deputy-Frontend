@@ -67,6 +67,9 @@ const StudentInfoPage: FC = () => {
       onFilter: (value, record) => record.subgroupId == value,
       sorter: (a, b) => subgroupsMap[a.subgroupId].index - subgroupsMap[b.subgroupId].index,
       render: (subgroupId: number) => {
+        if (!subgroupsMap)
+          return subgroupId;
+
         const subgroup = subgroupsMap[subgroupId]
         return (
           <Tag color="blue">
