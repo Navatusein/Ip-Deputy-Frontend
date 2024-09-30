@@ -4,8 +4,11 @@ import {ITeacher} from "@/entities/teacher";
 import {teacherApi} from "@/entities/teacher/api/teacher-api.ts";
 import {ColumnsType} from "antd/es/table";
 import {DataTable} from "@/widgets/data-table";
+import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
 const TeacherInfoPage: FC = () => {
+  useSetPageTitle("Teacher information page");
+
   const [form] = Form.useForm();
 
   const [selected, setSelected] = useState<ITeacher | undefined>();

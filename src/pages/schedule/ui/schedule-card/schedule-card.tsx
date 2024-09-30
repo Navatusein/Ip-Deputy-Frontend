@@ -42,15 +42,17 @@ const ScheduleCard: FC<IProps> = (props) => {
   }, [props.couple, props.selectedCouple]);
 
   return (
-    <Flex vertical style={{padding: "8px", backgroundColor: isSelected ? colorInfoBg : "", border: isSelected ? `solid 1px ${colorInfoBorder}` : ""}}>
+    <Flex vertical style={{padding: "8px", textWrap: "nowrap", backgroundColor: isSelected ? colorInfoBg : "", border: isSelected ? `solid 1px ${colorInfoBorder}` : ""}}>
       <Space>
         <Radio onClick={selectSchedule} checked={isSelected} style={{margin: 0}}/>
         <Text strong={true}>
           {subject?.shortName ?? "undefined"}
         </Text>
-        <Tag color={"blue"}>
+        <Tag color={"blue"} style={{margin: 0}}>
           {subjectType?.shortName ?? "undefined"}
         </Tag>
+        {props.couple.link && <Tag style={{margin: 0}}>Link</Tag>}
+        {props.couple.cabinet && <Tag color="green" style={{margin: 0}}>{props.couple.cabinet}</Tag>}
       </Space>
       <Space>
         {props.couple.startDate &&
@@ -68,14 +70,14 @@ const ScheduleCard: FC<IProps> = (props) => {
         {props.couple.additionalDates.length !== 0 &&
           <Text>
             та [
-            {props.couple.additionalDates.map((value) => (value.date.substring(5).split("-").reverse().join("."))).join(".")}
+            {props.couple.additionalDates.map((value) => (value.date.substring(5).split("-").reverse().join("."))).join(", ")}
             ]
           </Text>
         }
         {props.couple.removedDates.length !== 0 &&
           <Text>
             крім [
-            {props.couple.removedDates.map((value) => (value.date.substring(5).split("-").reverse().join("."))).join(".")}
+            {props.couple.removedDates.map((value) => (value.date.substring(5).split("-").reverse().join("."))).join(", ")}
             ]
           </Text>
         }

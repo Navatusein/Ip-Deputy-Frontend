@@ -13,6 +13,7 @@ import {DataTable} from "@/widgets/data-table";
 import {MinusCircleOutlined, PlusOutlined} from "@ant-design/icons";
 import {IScheduleForm, IScheduleTable} from "@/pages/schedule";
 import ScheduleCard from "../schedule-card/schedule-card.tsx";
+import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
 const GROUP_NAME = import.meta.env.VITE_GROUP_NAME;
 
@@ -20,6 +21,8 @@ const {RangePicker} = DatePicker;
 const {TextArea} = Input;
 
 const SchedulePage: FC = () => {
+  useSetPageTitle("Schedule control page");
+
   const [form] = Form.useForm();
 
   const [dayOfWeekId, setDayOfWeekId] = useState(1);
@@ -194,19 +197,21 @@ const SchedulePage: FC = () => {
   return (
     <Card bordered={false}>
       <Space direction="vertical" style={{width: "100%"}}>
-        <Segmented
-          options={[
-            {label: "Monday", value: 1},
-            {label: "Tuesday", value: 2},
-            {label: "Wednesday", value: 3},
-            {label: "Thursday", value: 4},
-            {label: "Friday", value: 5},
-            {label: "Saturday", value: 6},
-            {label: "Sunday", value: 7}
-          ]}
-          value={dayOfWeekId}
-          onChange={(value) => {setDayOfWeekId(value)}}
-        />
+        <div style={{overflowX: "auto"}}>
+          <Segmented
+            options={[
+              {label: "Monday", value: 1},
+              {label: "Tuesday", value: 2},
+              {label: "Wednesday", value: 3},
+              {label: "Thursday", value: 4},
+              {label: "Friday", value: 5},
+              {label: "Saturday", value: 6},
+              {label: "Sunday", value: 7}
+            ]}
+            value={dayOfWeekId}
+            onChange={(value) => {setDayOfWeekId(value)}}
+          />
+        </div>
         <DataTable
           columns={columns}
           data={schedule}

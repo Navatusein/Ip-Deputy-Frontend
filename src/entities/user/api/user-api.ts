@@ -13,7 +13,7 @@ export const userApi = baseApi.injectEndpoints({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         queryFulfilled
           .then(data => dispatch(setUser(data.data)))
-          .catch(() => logout())
+          .catch(() => dispatch(logout()))
       },
     }),
     loginUserForBot: builder.mutation<IUser, string>({
@@ -24,7 +24,7 @@ export const userApi = baseApi.injectEndpoints({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         queryFulfilled
           .then(data => dispatch(setUser(data.data)))
-          .catch(() => logout())
+          .catch(() => dispatch(logout()))
       },
     }),
   }),

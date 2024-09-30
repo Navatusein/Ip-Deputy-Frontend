@@ -2,14 +2,14 @@ import {FC} from "react";
 import {Card} from "antd";
 import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
-const DevPage: FC = () => {
-  useSetPageTitle("Developer page");
+const HomePage: FC = () => {
+  useSetPageTitle("Home page");
 
   return (
     <Card bordered={false}>
-      Dev Page
+      Home page
     </Card>
   );
 };
 
-export default DevPage;
+export default HomePage;

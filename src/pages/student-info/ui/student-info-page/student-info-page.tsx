@@ -5,8 +5,11 @@ import {subgroupApi} from "@/entities/subgroup";
 import {ColumnsType} from "antd/es/table";
 import dayjs from "dayjs";
 import {DataTable} from "@/widgets/data-table";
+import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
 const StudentInfoPage: FC = () => {
+  useSetPageTitle("Student information page");
+
   const [form] = Form.useForm();
 
   const [selected, setSelected] = useState<IStudent | undefined>();
@@ -64,6 +67,9 @@ const StudentInfoPage: FC = () => {
       onFilter: (value, record) => record.subgroupId == value,
       sorter: (a, b) => subgroupsMap[a.subgroupId].index - subgroupsMap[b.subgroupId].index,
       render: (subgroupId: number) => {
+        if (!subgroupsMap)
+          return subgroupId;
+
         const subgroup = subgroupsMap[subgroupId]
         return (
           <Tag color="blue">
