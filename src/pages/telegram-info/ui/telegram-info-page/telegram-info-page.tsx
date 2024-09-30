@@ -5,10 +5,13 @@ import moment from "moment-timezone";
 import {IStudentTelegram, studentTelegramApi} from "@/entities/student-telegram";
 import {ColumnsType} from "antd/es/table";
 import {DataTable} from "@/widgets/data-table";
+import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
 const TIME_ZONE = import.meta.env.VITE_TIME_ZONE;
 
 const TelegramInfoPage: FC = () => {
+  useSetPageTitle("Telegram information page");
+
   const [form] = Form.useForm();
 
   const [selected, setSelected] = useState<IStudentTelegram | undefined>();

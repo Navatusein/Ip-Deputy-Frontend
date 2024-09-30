@@ -7,8 +7,11 @@ import {subgroupApi} from "@/entities/subgroup";
 import {ColumnsType} from "antd/es/table";
 import {DataTable} from "@/widgets/data-table";
 import {MinusCircleOutlined, PlusOutlined} from "@ant-design/icons";
+import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
 const SubmissionConfigPage: FC = () => {
+  useSetPageTitle("Submission config page");
+
   const [form] = Form.useForm();
 
   const [selected, setSelected] = useState<ISubmissionsConfig | undefined>();

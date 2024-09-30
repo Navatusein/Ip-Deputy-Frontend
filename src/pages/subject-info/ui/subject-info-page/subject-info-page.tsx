@@ -3,8 +3,11 @@ import {Card, Form, Input, InputNumber, Tag} from "antd";
 import {ISubject, subjectApi} from "@/entities/subject";
 import {ColumnsType} from "antd/es/table";
 import {DataTable} from "@/widgets/data-table";
+import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
 const SubjectInfoPage: FC = () => {
+  useSetPageTitle("Subject information page");
+
   const [form] = Form.useForm();
 
   const [selected, setSelected] = useState<ISubject | undefined>();

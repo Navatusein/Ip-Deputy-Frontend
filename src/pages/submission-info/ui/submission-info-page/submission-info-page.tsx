@@ -6,10 +6,13 @@ import {subjectApi} from "@/entities/subject";
 import {subjectTypeApi} from "@/entities/subject-type";
 import {IFilterOptions, SubmissionCard} from "@/pages/submission-info";
 import {ClearOutlined, FilterOutlined, SearchOutlined} from "@ant-design/icons";
+import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
 const {Title} = Typography;
 
 const SubmissionInfoPage: FC = () => {
+  useSetPageTitle("Submission information page");
+
   const submissionsConfigs = submissionConfigApi.useGetSubmissionsConfigsQuery();
   const subgroups = subgroupApi.useGetSubgroupsQuery();
   const subjects = subjectApi.useGetSubjectsQuery();

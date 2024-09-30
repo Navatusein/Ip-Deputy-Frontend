@@ -13,6 +13,7 @@ import {DataTable} from "@/widgets/data-table";
 import {MinusCircleOutlined, PlusOutlined} from "@ant-design/icons";
 import {IScheduleForm, IScheduleTable} from "@/pages/schedule";
 import ScheduleCard from "../schedule-card/schedule-card.tsx";
+import {useSetPageTitle} from "@/shared/hooks/use-set-page-title.ts";
 
 const GROUP_NAME = import.meta.env.VITE_GROUP_NAME;
 
@@ -20,6 +21,8 @@ const {RangePicker} = DatePicker;
 const {TextArea} = Input;
 
 const SchedulePage: FC = () => {
+  useSetPageTitle("Schedule control page");
+
   const [form] = Form.useForm();
 
   const [dayOfWeekId, setDayOfWeekId] = useState(1);
