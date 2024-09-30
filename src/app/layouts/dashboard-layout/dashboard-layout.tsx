@@ -1,24 +1,25 @@
 import {FC} from "react";
-import {Layout} from "antd";
+import {Layout, theme} from "antd";
 import {Outlet} from "react-router-dom";
 import {SideMenu} from "@/widgets/side-menu";
+import {Header} from "@/widgets/header";
 
 const {Content} = Layout;
 
 const DashboardLayout: FC = () => {
+  const {token: {paddingLG}} = theme.useToken();
 
-  // const {token: {colorBgContainer}} = theme.useToken();
 
   return (
     <Layout>
       <SideMenu/>
       <Layout>
-        {/*<Header style={{padding: 0, background: colorBgContainer}}>*/}
-
-        {/*</Header>*/}
-        <Content style={{padding: "24px", overflowY: "auto"}}>
-          <Outlet/>
-        </Content>
+        <Header pageTitle={"Header"}/>
+        <Layout style={{overflowY: "auto"}}>
+          <Content style={{padding: `${paddingLG}px`, minHeight: "fit-content"}}>
+            <Outlet/>
+          </Content>
+        </Layout>
       </Layout>
     </Layout>
   );
