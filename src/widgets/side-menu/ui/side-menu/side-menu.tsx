@@ -83,7 +83,7 @@ const SideMenu: FC = () => {
 
   return (
     <Sider
-      breakpoint={"xs"}
+      breakpoint={"md"}
       theme={theme}
       onBreakpoint={(broken) => {setIsMobileWidth(broken)}}
       collapsible
