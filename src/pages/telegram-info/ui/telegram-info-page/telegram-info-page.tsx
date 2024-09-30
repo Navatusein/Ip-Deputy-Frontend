@@ -36,17 +36,17 @@ const TelegramInfoPage: FC = () => {
     {
       title: "Name",
       key: "name",
-      render: (_, value) => (studentsMap[value.studentId]?.name ?? "")
+      render: (_, value) => (!studentsMap ? value.studentId : studentsMap[value.studentId].name)
     },
     {
       title: "Surname",
       key: "surname",
-      render: (_, value) => (studentsMap[value.studentId]?.surname ?? "")
+      render: (_, value) => (!studentsMap ? value.studentId : studentsMap[value.studentId].surname)
     },
     {
       title: "Patronymic",
       key: "patronymic",
-      render: (_, value) => (studentsMap[value.studentId]?.patronymic ?? "")
+      render: (_, value) => (!studentsMap ? value.studentId : studentsMap[value.studentId].patronymic)
     },
     {
       title: "Telegram Id",
@@ -65,16 +65,11 @@ const TelegramInfoPage: FC = () => {
       render: (_, value) => (value.scheduleCompact ? "true" : "false")
     },
     {
-      title: "Last Congratulations",
-      dataIndex: "lastCongratulations",
-      key: "lastCongratulations",
-      render: (_, value) => (value.lastCongratulations ? moment.utc(value.lastCongratulations).tz(TIME_ZONE).format("YYYY-MM-DD HH:mm:ss") : "")
-    },
-    {
       title: "Last Activity",
-      dataIndex: "lastActivity",
-      key: "lastActivity",
-      render: (_, value) => (value.lastActivity ? moment.utc(value.lastActivity).tz(TIME_ZONE).format("YYYY-MM-DD HH:mm:ss") : "")
+      dataIndex: "lastActivityDiff",
+      key: "lastActivityDiff",
+      ellipsis: true,
+      render: (_, value) => (value.lastActivity ? moment.utc(value.lastActivity).tz(TIME_ZONE).fromNow() : "")
     },
   ];
 
