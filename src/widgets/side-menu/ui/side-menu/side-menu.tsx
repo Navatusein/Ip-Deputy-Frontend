@@ -1,14 +1,21 @@
 import {FC, useState} from "react";
 import {Layout, Menu, MenuProps} from "antd";
-import {Link} from "react-router-dom";
-import {BookOutlined, CheckSquareOutlined, SolutionOutlined, UserOutlined} from "@ant-design/icons";
+import {Link, useLocation} from "react-router-dom";
+import {BookOutlined, CheckSquareOutlined, HomeOutlined, SolutionOutlined, UserOutlined} from "@ant-design/icons";
 
 const {Sider} = Layout;
 
 const SideMenu: FC = () => {
+  const location = useLocation();
+
   const [isMobileWidth, setIsMobileWidth] = useState<boolean>(false)
 
   const items: MenuProps["items"] = [
+    {
+      label: <Link to="/home">Home</Link>,
+      key: "home",
+      icon: <HomeOutlined/>
+    },
     {
       label: "Students",
       key: "students",
@@ -16,15 +23,15 @@ const SideMenu: FC = () => {
       children: [
         {
           label: <Link to="/students-info">Information</Link>,
-          key: "students:1"
+          key: "students-info"
         },
         {
           label: <Link to="/subgroups-info">Subgroups</Link>,
-          key: "students:2"
+          key: "subgroups-info"
         },
         {
           label: <Link to="/telegrams-info">Telegram Info</Link>,
-          key: "students:3"
+          key: "telegrams-info"
         },
       ]
     },
@@ -35,7 +42,7 @@ const SideMenu: FC = () => {
       children: [
         {
           label: <Link to="/teachers-info">Information</Link>,
-          key: "teachers:1"
+          key: "teachers-info"
         },
       ]
     },
@@ -46,11 +53,11 @@ const SideMenu: FC = () => {
       children: [
         {
           label: <Link to="/subjects-info">Information</Link>,
-          key: "subjects:1"
+          key: "subjects-info"
         },
         {
           label: <Link to="/schedule">Schedule</Link>,
-          key: "subjects:2"
+          key: "schedule"
         },
       ]
     },
@@ -61,15 +68,17 @@ const SideMenu: FC = () => {
       children: [
         {
           label: <Link to="/submission-configs">Config</Link>,
-          key: "submissions:1"
+          key: "submission-configs"
         },
         {
           label: <Link to="/submission-info">Information</Link>,
-          key: "submissions:2"
+          key: "submission-info"
         },
       ]
     }
   ];
+
+  console.log(location.pathname)
 
   return (
     <Sider
@@ -80,7 +89,7 @@ const SideMenu: FC = () => {
       collapsedWidth={isMobileWidth ? "0px" : "60px"}
       style={{position: isMobileWidth ? "absolute" : undefined, zIndex: 100, top: 0, bottom: 0, left: 0}}
     >
-      <Menu theme="dark" mode="inline" items={items}/>
+      <Menu theme="dark" mode="inline" items={items} defaultSelectedKeys={[location.pathname.replace("/","")]}/>
     </Sider>
   );
 };
