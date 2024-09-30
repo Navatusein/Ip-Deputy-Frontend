@@ -1,7 +1,8 @@
 export enum PreferredPosition {
   InBegin,
   DoesNotMatter,
-  InEnd
+  InEnd,
+  OtherSubgroup
 }
 
 export interface ISubmissionStudent {
