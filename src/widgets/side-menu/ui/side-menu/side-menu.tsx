@@ -1,22 +1,12 @@
-import {FC, useContext, useState} from "react";
-import {Layout, Menu, MenuProps, Segmented} from "antd";
+import {FC, useState} from "react";
+import {Layout, Menu, MenuProps} from "antd";
 import {Link} from "react-router-dom";
-import {
-  BookOutlined,
-  CheckSquareOutlined,
-  MoonOutlined,
-  SolutionOutlined,
-  SunOutlined,
-  UserOutlined
-} from "@ant-design/icons";
-import {ThemeConfigContext} from "@/shared/contexts/theme-config-context/theme-config-context.ts";
+import {BookOutlined, CheckSquareOutlined, SolutionOutlined, UserOutlined} from "@ant-design/icons";
 
 const {Sider} = Layout;
 
 const SideMenu: FC = () => {
   const [isMobileWidth, setIsMobileWidth] = useState<boolean>(false)
-
-  const {setTheme, theme} = useContext(ThemeConfigContext);
 
   const items: MenuProps["items"] = [
     {
@@ -84,25 +74,13 @@ const SideMenu: FC = () => {
   return (
     <Sider
       breakpoint={"md"}
-      theme={theme}
+      theme="dark"
       onBreakpoint={(broken) => {setIsMobileWidth(broken)}}
       collapsible
       collapsedWidth={isMobileWidth ? "0px" : "60px"}
       style={{position: isMobileWidth ? "absolute" : undefined, zIndex: 100, top: 0, bottom: 0, left: 0}}
     >
-      <Menu theme={theme} mode="inline" items={items}/>
-      {
-        theme == "light" &&
-          <Segmented
-              value={theme}
-              onChange={setTheme}
-              options={[
-                {value: "dark", icon: <MoonOutlined/>},
-                {value: "light", icon: <SunOutlined/>} ,
-              ]}
-              block
-          />
-      }
+      <Menu theme="dark" mode="inline" items={items}/>
     </Sider>
   );
 };

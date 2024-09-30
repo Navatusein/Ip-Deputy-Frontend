@@ -1,7 +1,9 @@
-import {FC} from "react";
+import {FC, useContext} from "react";
 import {Button, Flex, Layout, Space, theme, Typography} from "antd";
 import {logout} from "@/entities/user/model/user-slice.ts";
 import {useAppDispatch, useAppSelector} from "@/shared/hooks/use-app-selector.ts";
+import {ThemeConfigContext} from "@/shared/contexts/theme-config-context/theme-config-context.ts";
+import {MoonOutlined, SunOutlined} from "@ant-design/icons";
 
 const {Title, Text} = Typography;
 
@@ -12,6 +14,8 @@ interface IProps {
 const Header: FC<IProps> = (props) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user.user);
+
+  const themeConfig = useContext(ThemeConfigContext);
 
   const {token: {paddingLG, paddingSM, colorBgContainer}} = theme.useToken();
 
@@ -27,6 +31,10 @@ const Header: FC<IProps> = (props) => {
           <Text style={{textWrap: "nowrap"}}>
             Login as {user?.userName}
           </Text>
+          <Button
+            onClick={() => themeConfig.setTheme(themeConfig.theme == "dark" ? "light" : "dark")}
+            icon={themeConfig.theme == "dark" ? <MoonOutlined/> : <SunOutlined/>}
+          />
           <Button onClick={() => dispatch(logout())}>
             Logout
           </Button>
