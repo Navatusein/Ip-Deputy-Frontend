@@ -15,6 +15,7 @@ export interface ICouple {
   endDate?: string;
   isRolling: boolean;
   additionalInformation?: string;
+  cabinet: string;
   link?: string;
   additionalDates: ICoupleDate[];
   removedDates: ICoupleDate[];
