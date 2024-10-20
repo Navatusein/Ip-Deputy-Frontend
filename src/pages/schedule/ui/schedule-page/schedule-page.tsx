@@ -162,6 +162,9 @@ const SchedulePage: FC = () => {
   }
 
   const onFormSelect = (data: ICouple) => {
+
+    console.log(data)
+
     return {
       ...data,
       subgroupId: data.subgroupId == undefined ? -1 : data.subgroupId,
@@ -179,12 +182,14 @@ const SchedulePage: FC = () => {
   }
 
   const onFormSubmit = (data: IScheduleForm) => {
+
+
     return {
       ...data,
       subgroupId: data.subgroupId === -1 ? undefined : data.subgroupId,
       dayOfWeekId: dayOfWeekId,
-      startDate: data.startEndDateRange === undefined ? undefined : dayjs(data.startEndDateRange![0]).format("YYYY-MM-DD").toString(),
-      endDate: data.startEndDateRange === undefined ? undefined : dayjs(data.startEndDateRange![1]).format("YYYY-MM-DD").toString(),
+      startDate: data.startEndDateRange == undefined ? undefined : dayjs(data.startEndDateRange![0]).format("YYYY-MM-DD").toString(),
+      endDate: data.startEndDateRange == undefined ? undefined : dayjs(data.startEndDateRange![1]).format("YYYY-MM-DD").toString(),
       additionalDates: data.additionalDates ? data.additionalDates.map((value) => {
         return {id: 0, date: dayjs(value.date).format("YYYY-MM-DD").toString()}
       }) : [],
@@ -231,6 +236,8 @@ const SchedulePage: FC = () => {
           <Form.Item name="subjectId" label="Subject" rules={[{required: true}]}>
             <Select
               placeholder="Select subject"
+              showSearch
+              optionFilterProp="label"
               options={subjects?.data?.map((value) => {
                 return {value: value.id, label: value.name}
               })}
@@ -261,6 +268,8 @@ const SchedulePage: FC = () => {
           <Form.Item name="teacherId" label="Teacher" rules={[{required: true}]}>
             <Select
               placeholder="Select teacher"
+              showSearch
+              optionFilterProp="label"
               options={teachers?.data?.map((value) => {
                 return {value: value.id, label: `${value.surname} ${value.name.substring(0, 1)}. ${value.patronymic.substring(0, 1)}.`}
               })}
@@ -289,9 +298,9 @@ const SchedulePage: FC = () => {
                     Add additional date
                   </Button>
                 </Form.Item>
-                {fields.map((field) => (
+                {fields.map((field, index) => (
                   <Space key={field.key} align="baseline">
-                    <Form.Item {...field} key={field.key + "form"} name={[field.name, "date"]} label={`Additional date ${field.key + 1}`}>
+                    <Form.Item {...field} key={field.key + "form"} name={[field.name, "date"]} label={`Additional date ${index + 1}`}>
                       <DatePicker/>
                     </Form.Item>
                     <MinusCircleOutlined onClick={() => remove(field.name)}/>
@@ -308,9 +317,9 @@ const SchedulePage: FC = () => {
                     Add removed date
                   </Button>
                 </Form.Item>
-                {fields.map((field) => (
+                {fields.map((field, index) => (
                   <Space key={field.key} align="baseline">
-                    <Form.Item {...field} key={field.key + "form"} name={[field.name, "date"]} label={`Removed date ${field.key + 1}`}>
+                    <Form.Item {...field} key={field.key + "form"} name={[field.name, "date"]} label={`Removed date ${index + 1}`}>
                       <DatePicker/>
                     </Form.Item>
                     <MinusCircleOutlined onClick={() => remove(field.name)}/>

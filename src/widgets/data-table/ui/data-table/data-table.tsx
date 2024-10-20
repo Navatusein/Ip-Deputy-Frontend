@@ -139,7 +139,7 @@ const DataTable: FC<IProps<any>> = (props) => {
           loading={props.isLoading}
           size="small"
           scroll={{x: "auto"}}
-          pagination={props.pagination === true && {pageSize: 15}}
+          pagination={props.pagination === true && {pageSize: 30}}
           bordered={props.bordered}
           rowKey={(record) => record.id}
           rowSelection={props.isSelectable ? {
