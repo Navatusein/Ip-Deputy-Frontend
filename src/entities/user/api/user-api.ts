@@ -18,7 +18,7 @@ export const userApi = baseApi.injectEndpoints({
     }),
     loginUserForBot: builder.mutation<IUser, string>({
       query: (initData) => ({
-        url: `/authentication/login-bot/${initData}`,
+        url: `/authentication/login-bot/${btoa(initData)}`,
         method: "POST"
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
